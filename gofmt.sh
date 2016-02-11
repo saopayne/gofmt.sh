@@ -1,11 +1,9 @@
 #!/usr/bin/sh
 gofiles=$(find . -name "*.go")
-[ -z "$gofiles" ] && exit 0 #-z means true if string is empty
+[ -z "$gofiles" ] && exit 0
 
 unformatted=$(gofmt -l $gofiles)
-[ -z "$unformatted" ] && exit 0 #so if var is empty, let's quit
-
-# Some files are not gofmt'd. Print message and fail.
+[ -z "$unformatted" ] && exit 0
 
 echo >&2 "Formatting go files..."
 for fn in $unformatted; do
